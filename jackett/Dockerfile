@@ -1,6 +1,6 @@
 FROM alpine:3.20
 
-ARG JACKETT_RELEASE
+ARG JACKETT_VERSION
 
 # environment settings
 ENV XDG_DATA_HOME="/config" \
@@ -19,13 +19,13 @@ RUN \
   echo "**** install jackett ****" && \
   mkdir -p \
     /app/Jackett && \
-  if [ -z ${JACKETT_RELEASE+x} ]; then \
-    JACKETT_RELEASE=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" \
+  if [ -z ${JACKETT_VERSION+x} ]; then \
+    JACKETT_VERSION=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" \
     | jq -r .tag_name); \
   fi && \
   curl -o \
     /tmp/jacket.tar.gz -L \
-    "https://github.com/Jackett/Jackett/releases/download/${JACKETT_RELEASE}/Jackett.Binaries.LinuxMuslAMDx64.tar.gz" && \
+    "https://github.com/Jackett/Jackett/releases/download/${JACKETT_VERSION}/Jackett.Binaries.LinuxMuslAMDx64.tar.gz" && \
   tar xf \
     /tmp/jacket.tar.gz -C \
     /app/Jackett --strip-components=1

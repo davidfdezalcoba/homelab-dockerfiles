@@ -1,6 +1,6 @@
 FROM alpine:3.20
 
-ARG PROWLARR_RELEASE
+ARG PROWLARR_VERSION
 
 # environment settings
 ARG PROWLARR_BRANCH="master"
@@ -20,13 +20,13 @@ RUN \
 RUN \
   echo "**** install prowlarr ****" && \
   mkdir -p /app/prowlarr/bin && \
-  if [ -z ${PROWLARR_RELEASE+x} ]; then \
-    PROWLARR_RELEASE=$(curl -sL "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/changes?runtime=netcore&os=linuxmusl" \
+  if [ -z ${PROWLARR_VERSION+x} ]; then \
+    PROWLARR_VERSION=$(curl -sL "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/changes?runtime=netcore&os=linuxmusl" \
     | jq -r '.[0].version'); \
   fi && \
   curl -o \
     /tmp/prowlarr.tar.gz -L \
-    "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/updatefile?version=${PROWLARR_RELEASE}&os=linuxmusl&runtime=netcore&arch=x64" && \
+    "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/updatefile?version=${PROWLARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \
     /tmp/prowlarr.tar.gz -C \
     /app/prowlarr/bin --strip-components=1

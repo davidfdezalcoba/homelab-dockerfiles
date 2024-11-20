@@ -15,7 +15,10 @@ RUN \
   apk add --no-cache \
     icu-libs \
     sqlite-libs \
+    bash \
     curl \
+    tzdata \
+    coreutils \
     jq \
     xmlstarlet
 
