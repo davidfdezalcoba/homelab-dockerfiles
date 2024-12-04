@@ -57,10 +57,5 @@ RUN \
 # add unrar
 COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
 
-# ports and volumes
-EXPOSE 8080 6881 6881/udp
-
-VOLUME /config
-
 ENTRYPOINT ["/bin/sh", "-c", "/usr/bin/qbittorrent-nox --webui-port=${WEBUI_PORT} ${TORRENTING_PORT_ARG}"]
 
