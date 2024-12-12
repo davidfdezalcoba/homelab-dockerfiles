@@ -16,6 +16,6 @@ if [[ -z ${VERSION} ]]; then
     docker push davidfdezalcoba/${APP}:latest
 else
     ARG="$(echo ${APP} | tr '[:lower:]' '[:upper:]')_VERSION"
-    docker buildx build --build-arg ${ARG}=${VERSION} -t davidfdezalcoba/${APP}:${VERSION} ./{APP}
+    docker buildx build --build-arg ${ARG}=${VERSION} -t davidfdezalcoba/${APP}:${VERSION} ./${APP}
     docker push davidfdezalcoba/${APP}:${VERSION}
 fi
