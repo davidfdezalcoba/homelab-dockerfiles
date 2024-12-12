@@ -1,3 +1,4 @@
+FROM davidfdezalcoba/unrar:latest AS unrar
 FROM python:alpine
 
 # environment settings
@@ -59,26 +60,6 @@ RUN \
   make check && \
   make install
 
-COPY ./data.rar /data.rar
-
-RUN \
-  echo "**** install unrar from source ****" && \
-  mkdir /tmp/unrar && \
-  curl -o \
-    /tmp/unrar.tar.gz -L \
-    "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \
-  tar xf \
-    /tmp/unrar.tar.gz -C \
-    /tmp/unrar --strip-components=1 && \
-  cd /tmp/unrar && \
-  sed -i 's|LDFLAGS=-pthread|LDFLAGS=-pthread -static|' makefile && \
-  sed -i 's|CXXFLAGS=-march=native |CXXFLAGS=|' makefile && \
-  make && \
-  install -v -m755 unrar /usr/bin && \
-  echo "**** test binary ****" && \
-  /usr/bin/unrar v /data.rar && \
-  /usr/bin/unrar t /data.rar
-
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
@@ -86,6 +67,8 @@ RUN \
   rm -rf \
     /tmp/* \
     $HOME/.cache
+
+COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
 
 WORKDIR /app/sabnzbd
 
