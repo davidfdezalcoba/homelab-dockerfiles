@@ -12,7 +12,9 @@ if [[ -z ${APP} ]]; then
 fi
 
 if [[ -z ${VERSION} ]]; then
-    docker image rm davidfdezalcoba/${APP}:latest
+    if docker image ls davidfdezalcoba/${APP}:latest -q | grep .; then
+        docker image rm davidfdezalcoba/${APP}:latest
+    fi
     docker buildx build -t davidfdezalcoba/${APP}:latest ./${APP}
     docker push davidfdezalcoba/${APP}:latest
 else
