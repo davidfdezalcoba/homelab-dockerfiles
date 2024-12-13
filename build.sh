@@ -12,6 +12,7 @@ if [[ -z ${APP} ]]; then
 fi
 
 if [[ -z ${VERSION} ]]; then
+    docker image rm davidfdezalcoba/${APP}:latest
     docker buildx build -t davidfdezalcoba/${APP}:latest ./${APP}
     docker push davidfdezalcoba/${APP}:latest
 else

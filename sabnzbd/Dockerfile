@@ -6,7 +6,6 @@ ENV HOME="/config" \
   PYTHONIOENCODING=utf-8
 
 ARG SABNZBD_VERSION
-ARG UNRAR_VERSION=7.0.9
 
 RUN \
   echo "**** install packages ****" && \
