@@ -6,7 +6,7 @@ VERSION=$2
 set -e 
 set -o pipefail
 
-if [[ -z ${APP} ]]; then
+if [[ -z ${APP} ]] || ! ls -al | grep -q ${APP}; then
     echo 'No app with that name, exiting'
     exit 1
 fi
