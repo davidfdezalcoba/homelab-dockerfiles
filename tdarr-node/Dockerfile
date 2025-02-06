@@ -1,6 +1,5 @@
-FROM haveagitgat/tdarr_node:latest
-
 ARG TDARR_NODE_VERSION
+FROM haveagitgat/tdarr_node:${TDARR_NODE_VERSION}
 
 RUN \
 mkdir -p /etc/apt/keyrings && \
