@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 # For phantomjs
 ENV OPENSSL_CONF="/etc/ssl"
@@ -23,14 +23,15 @@ RUN mkdir -p /config && \
       g++ \
       nano \
       make \
-      python3.10-dev \
+      python3-dev \
       python3-pip \
       fontconfig \
       xz-utils \
       bzip2 \
       aria2 \
-      python3-venv && \
-    if [[ $(uname -m) == "x86_64" ]]; then \
+      python3-venv
+
+RUN if [[ $(uname -m) == "x86_64" ]]; then \
       curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
       tar -xf ffmpeg.tar.gz && \
       chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffmpeg && \
@@ -50,9 +51,10 @@ RUN mkdir -p /config && \
       rm -rf ffmpeg-master-latest-linuxarm64-gpl/ ; \
     fi && \
     # Ensure ffmpeg is installed
-    ffmpeg -version && \
-    # Install phantomjs if using x86_64, ensure it is properly installed
-    if [[ $(uname -m) == "x86_64" ]]; then \
+    ffmpeg -version
+
+# Install phantomjs if using x86_64, ensure it is properly installed
+RUN if [[ $(uname -m) == "x86_64" ]]; then \
       curl -L -o phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
       tar -xvf phantomjs.tar.bz2 && \
       mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
@@ -70,7 +72,7 @@ RUN apt-get remove -y \
       make \
       xz-utils \
       bzip2 \
-      python3.10-dev \
+      python3-dev \
       python3-venv && \
     apt-get autoremove -y && \
     apt-get purge -y --auto-remove && \
