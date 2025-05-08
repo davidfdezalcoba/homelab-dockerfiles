@@ -9,9 +9,7 @@ on:
 
 jobs:
   build-and-push:
-    container:
-      image: node:18
-    runs-on: docker
+    runs-on: self-hosted
 
     steps:
 
