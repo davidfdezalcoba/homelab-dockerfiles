@@ -27,7 +27,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-     - name: Set up containerd
+      - name: Set up containerd
         uses: crazy-max/ghaction-setup-containerd@v2
 
       - name: Log in to registry
