@@ -4,6 +4,7 @@ FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=sonarr packageName=Sonarr/Sonarr versioning=loose
 ARG SONARR_VERSION=4.0.14.2939
+LABEL org.opencontainers.image.source="https://github.com/Sonarr/Sonarr"
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
   SONARR_CHANNEL="v4-stable" \
