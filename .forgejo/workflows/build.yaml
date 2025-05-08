@@ -1,0 +1,51 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.example.com
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Get list of changed Dockerfiles
+        id: get_changed
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'Dockerfile$' || true > changed_dockerfiles.txt
+          echo "Changed Dockerfiles:"
+          cat changed_dockerfiles.txt
+
+      - name: Build and push each changed Dockerfile using git context
+        run: |
+          REPO_URL="${{ github.server_url }}/${{ github.repository }}.git"
+          BRANCH="main"
+
+          while read -r dockerfile; do
+            [ -z "$dockerfile" ] && continue
+            dir=$(dirname "$dockerfile")
+            name=$(echo "$dir" | tr '/' '-')
+            context="${REPO_URL}#refs/heads/${BRANCH}:${dir}"
+            echo "Building $dockerfile from context $context"
+
+            docker buildx build \
+              --file "$dockerfile" \
+              --tag "git.amellado.stream/davidfdezalcoba/${name}:${{ github.sha }}" \
+              --push \
+              "$context"
+          done < changed_dockerfiles.txt
