@@ -5,7 +5,7 @@ ENV OPENSSL_CONF="/etc/ssl"
 # For downloading thumbnails
 ENV SSL_CERT_DIR="/etc/ssl/certs/"
 
-# renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub
+# renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub versioning=loose
 ARG YTDL_SUB_VERSION=2025.05.05
 ###############################################################################
 # YTDL-SUB INSTALL
