@@ -16,8 +16,9 @@ jobs:
         run: |
           apk add --no-cache nodejs npm
 
-      - name: Set up Docker
-        uses: https://github.com/docker/setup-docker-action@v4
+      - name: Install docker-cli
+        run: |
+          apk add --no-cache docker-cli
 
       - name: Checkout
         uses: actions/checkout@v4
