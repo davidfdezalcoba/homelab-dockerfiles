@@ -9,15 +9,11 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: docker
-    container:
-      image: docker:latest
-      options: --privileged -v /var/run/docker.sock:/var/run/docker.sock
+    runs-on: self-hosted
     steps:
 
-      - name: Install Node.js
-        run: |
-          apk add --no-cache nodejs npm
+      - name: Set up Docker
+        uses: https://github.com/docker/setup-docker-action@v4
 
       - name: Checkout
         uses: actions/checkout@v4
