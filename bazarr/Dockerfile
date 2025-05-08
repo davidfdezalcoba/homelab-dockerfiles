@@ -1,6 +1,6 @@
 FROM davidfdezalcoba/unrar:latest AS unrar
 
-FROM python:3.12-alpine3.20
+FROM python:3.13-alpine3.20
 
 # renovate: datasource=github-releases depName=bazarr packageName=morpheus65535/bazarr
 ARG BAZARR_VERSION=v1.5.1
