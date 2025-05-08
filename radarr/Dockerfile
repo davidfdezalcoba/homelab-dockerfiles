@@ -1,8 +1,8 @@
 FROM alpine:3.20
 
-ARG RADARR_VERSION
+# renovate: datasource=github-releases depName=radarr packageName=Radarr/Radarr
+ARG RADARR_VERSION="5.21.1.9799"
 
-ARG RADARR_BRANCH="master"
 ENV XDG_CONFIG_HOME="/config/xdg" \
   COMPlus_EnableDiagnostics=0 \
   TMPDIR=/run/radarr-temp
@@ -22,13 +22,9 @@ RUN \
 RUN \
   echo "**** install radarr ****" && \
   mkdir -p /app/radarr/bin && \
-  if [ -z ${RADARR_VERSION+x} ]; then \
-    RADARR_VERSION=$(curl -sL "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/changes?runtime=netcore&os=linuxmusl" \
-    | jq -r '.[0].version'); \
-  fi && \
   curl -o \
     /tmp/radarr.tar.gz -L \
-    "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/updatefile?version=${RADARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
+    "https://radarr.servarr.com/v1/update/master/updatefile?version=${RADARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \
     /tmp/radarr.tar.gz -C \
     /app/radarr/bin --strip-components=1

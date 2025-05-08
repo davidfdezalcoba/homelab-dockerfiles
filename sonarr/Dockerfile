@@ -2,7 +2,8 @@
 
 FROM alpine:3.20
 
-ARG SONARR_VERSION
+# renovate: datasource=github-releases depName=sonarr packageName=Sonarr/Sonarr
+ARG SONARR_VERSION=4.0.14.2939
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
   SONARR_CHANNEL="v4-stable" \
@@ -26,10 +27,6 @@ RUN \
   echo "**** install sonarr ****" && \
   mkdir -p /app/sonarr/bin ${TMPDIR} && \
   chown 1000:1000 ${TMPDIR} && \
-  if [ -z ${SONARR_VERSION+x} ]; then \
-    SONARR_VERSION=$(curl -sX GET http://services.sonarr.tv/v1/releases \
-    | jq -r "first(.[] | select(.releaseChannel==\"${SONARR_CHANNEL}\") | .version)"); \
-  fi && \
   curl -o \
     /tmp/sonarr.tar.gz -L \
     "https://services.sonarr.tv/v1/update/${SONARR_BRANCH}/download?version=${SONARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \

@@ -2,7 +2,8 @@ FROM davidfdezalcoba/unrar:latest AS unrar
 
 FROM python:3.12-alpine3.20
 
-ARG BAZARR_VERSION
+# renovate: datasource=github-releases depName=bazarr packageName=morpheus65535/bazarr
+ARG BAZARR_VERSION=v1.5.1
 
 RUN \
   echo "**** install build packages ****" && \
@@ -29,10 +30,6 @@ RUN \
   echo "**** install bazarr ****" && \
   mkdir -p \
     /app/bazarr/bin && \
-  if [ -z ${BAZARR_VERSION+x} ]; then \
-    BAZARR_VERSION=$(curl -sX GET "https://api.github.com/repos/morpheus65535/bazarr/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
-  fi && \
   curl -o \
     /tmp/bazarr.zip -L \
     "https://github.com/morpheus65535/bazarr/releases/download/${BAZARR_VERSION}/bazarr.zip" && \

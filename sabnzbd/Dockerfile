@@ -5,7 +5,8 @@ FROM python:alpine
 ENV HOME="/config" \
   PYTHONIOENCODING=utf-8
 
-ARG SABNZBD_VERSION
+# renovate: datasource=github-releases depName=sabnzbd packageName=sabnzbd/sabnzbd
+ARG SABNZBD_VERSION=4.5.1
 
 RUN \
   echo "**** install packages ****" && \

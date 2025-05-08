@@ -5,6 +5,8 @@ ENV OPENSSL_CONF="/etc/ssl"
 # For downloading thumbnails
 ENV SSL_CERT_DIR="/etc/ssl/certs/"
 
+# renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub
+ARG YTDL_SUB_VERSION=2025.05.05
 ###############################################################################
 # YTDL-SUB INSTALL
 
@@ -31,39 +33,26 @@ RUN mkdir -p /config && \
       aria2 \
       python3-venv
 
-RUN if [[ $(uname -m) == "x86_64" ]]; then \
-      curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
-      tar -xf ffmpeg.tar.gz && \
-      chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffmpeg && \
-      chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffprobe && \
-      mv ffmpeg-master-latest-linux64-gpl/bin/ffmpeg /usr/bin/ffmpeg && \
-      mv ffmpeg-master-latest-linux64-gpl/bin/ffprobe /usr/bin/ffprobe && \
-      rm ffmpeg.tar.gz && \
-      rm -rf ffmpeg-master-latest-linux64-gpl/ ; \
-    else \
-      curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linuxarm64-gpl.tar.xz && \
-      tar -xf ffmpeg.tar.gz && \
-      chmod +x ffmpeg-master-latest-linuxarm64-gpl/bin/ffmpeg && \
-      chmod +x ffmpeg-master-latest-linuxarm64-gpl/bin/ffprobe && \
-      mv ffmpeg-master-latest-linuxarm64-gpl/bin/ffmpeg /usr/bin/ffmpeg && \
-      mv ffmpeg-master-latest-linuxarm64-gpl/bin/ffprobe /usr/bin/ffprobe && \
-      rm ffmpeg.tar.gz && \
-      rm -rf ffmpeg-master-latest-linuxarm64-gpl/ ; \
-    fi && \
-    # Ensure ffmpeg is installed
+RUN curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
+    tar -xf ffmpeg.tar.gz && \
+    chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffmpeg && \
+    chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffprobe && \
+    mv ffmpeg-master-latest-linux64-gpl/bin/ffmpeg /usr/bin/ffmpeg && \
+    mv ffmpeg-master-latest-linux64-gpl/bin/ffprobe /usr/bin/ffprobe && \
+    rm ffmpeg.tar.gz && \
+    rm -rf ffmpeg-master-latest-linux64-gpl/ && \
     ffmpeg -version
 
 # Install phantomjs if using x86_64, ensure it is properly installed
-RUN if [[ $(uname -m) == "x86_64" ]]; then \
-      curl -L -o phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
-      tar -xvf phantomjs.tar.bz2 && \
-      mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
-      rm -rf phantomjs-2.1.1-linux-x86_64/ && \
-      rm phantomjs.tar.bz2 && \
-      echo "Phantom JS version:" && \
-      phantomjs --version ; \
-    fi
-RUN curl -L -o ytdl-sub https://github.com/jmbannon/ytdl-sub/releases/latest/download/ytdl-sub && \
+RUN curl -L -o phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+    tar -xvf phantomjs.tar.bz2 && \
+    mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
+    rm -rf phantomjs-2.1.1-linux-x86_64/ && \
+    rm phantomjs.tar.bz2 && \
+    echo "Phantom JS version:" && \
+    phantomjs --version
+
+RUN curl -L -o ytdl-sub https://github.com/jmbannon/ytdl-sub/releases/download/${YTDL_SUB_VERSION}/ytdl-sub && \
     chmod +x ytdl-sub && \
     ./ytdl-sub -h
 

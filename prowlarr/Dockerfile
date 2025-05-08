@@ -1,6 +1,7 @@
 FROM alpine:3.20
 
-ARG PROWLARR_VERSION
+# renovate: datasource=github-releases depName=prowlarr packageName=Prowlarr/Prowlarr
+ARG PROWLARR_VERSION=1.32.2.4987
 
 # environment settings
 ARG PROWLARR_BRANCH="master"
