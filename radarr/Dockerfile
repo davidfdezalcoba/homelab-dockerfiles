@@ -1,7 +1,7 @@
 FROM alpine:3.20
 
 # renovate: datasource=github-releases depName=radarr packageName=Radarr/Radarr
-ARG RADARR_VERSION="5.21.1.9799"
+ARG RADARR_VERSION=5.21.1.9799
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
   COMPlus_EnableDiagnostics=0 \
