@@ -10,7 +10,7 @@ on:
 jobs:
   build-and-push:
     container:
-      image: ubuntu
+      image: node:18
     runs-on: docker
 
     steps:
