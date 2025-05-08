@@ -2,7 +2,7 @@
 
 FROM alpine:3.20
 
-# renovate: datasource=github-releases depName=sonarr packageName=Sonarr/Sonarr
+# renovate: datasource=github-releases depName=sonarr packageName=Sonarr/Sonarr versioning=loose
 ARG SONARR_VERSION=4.0.14.2939
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
