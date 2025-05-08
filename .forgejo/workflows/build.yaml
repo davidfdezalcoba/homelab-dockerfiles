@@ -10,7 +10,9 @@ on:
 jobs:
   build-and-push:
     runs-on: docker
-
+    container:
+      image: docker:latest
+      options: --privileged -v /var/run/docker.sock:/var/run/docker.sock
     steps:
 
       - name: Test
