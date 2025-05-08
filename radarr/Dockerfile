@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=radarr packageName=Radarr/Radarr versioning=loose
 ARG RADARR_VERSION=5.21.1.9799

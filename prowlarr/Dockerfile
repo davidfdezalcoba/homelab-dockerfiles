@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=prowlarr packageName=Prowlarr/Prowlarr versioning=loose
 ARG PROWLARR_VERSION=1.32.2.4987

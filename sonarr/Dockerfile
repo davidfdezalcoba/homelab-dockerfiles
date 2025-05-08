@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM alpine:3.20
+FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=sonarr packageName=Sonarr/Sonarr versioning=loose
 ARG SONARR_VERSION=4.0.14.2939

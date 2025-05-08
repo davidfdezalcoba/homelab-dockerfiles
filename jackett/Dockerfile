@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=jackett packageName=Jackett/Jackett
 ARG JACKETT_VERSION=v0.22.1877
