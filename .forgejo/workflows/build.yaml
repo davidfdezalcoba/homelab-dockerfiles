@@ -39,7 +39,7 @@ jobs:
           echo "Changed Dockerfiles:"
           cat changed_dockerfiles.txt
 
-      - name: Build and push each changed Dockerfile using git context
+      - name: Build and push
         run: |
           REPO_URL="${{ github.server_url }}/${{ github.repository }}.git"
           BRANCH="main"
