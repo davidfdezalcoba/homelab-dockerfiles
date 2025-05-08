@@ -54,12 +54,11 @@ jobs:
             [ -z "$dockerfile" ] && continue
             dir=$(dirname "$dockerfile")
             name=$(echo "$dir" | tr '/' '-')
-            context="${REPO_URL}#refs/heads/${BRANCH}:${dir}"
-            echo "Building $dockerfile from context $context"
+            version=$(cat "$dockerfile" | grep -i "ARG $name_VERSION" | cut -d= -f2)
 
             docker buildx build \
               --file "$dockerfile" \
-              --tag "git.amellado.stream/davidfdezalcoba/${name}:${{ github.sha }}" \
+              --tag "git.amellado.stream/davidfdezalcoba/${name}:${version}" \
               --push \
-              "$context"
+              ./${name}
           done < changed_dockerfiles.txt
