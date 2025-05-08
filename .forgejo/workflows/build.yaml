@@ -35,12 +35,12 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Get list of changed Dockerfiles
         id: get_changed
         run: |
-          git status
-          git log --oneline
           git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'Dockerfile$' > changed_dockerfiles.txt
           echo "Changed Dockerfiles:"
           cat changed_dockerfiles.txt
