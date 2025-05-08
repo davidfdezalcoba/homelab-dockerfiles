@@ -51,7 +51,9 @@ jobs:
             version=$(cat "$dockerfile" | grep -i "ARG $name_VERSION" | cut -d= -f2)
 
             docker buildx build \
-              --progress quiet \
+              --cache-to=type=registry,ref=git.amellado.stream/cache,mode=max \
+              --cache-from=type=registry,ref=git.amellado.stream/cache \
+              --progress plain \
               --file "$dockerfile" \
               --tag "git.amellado.stream/davidfdezalcoba/${name}:${version}" \
               --push \
