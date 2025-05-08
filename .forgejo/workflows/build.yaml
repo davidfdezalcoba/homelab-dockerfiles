@@ -39,7 +39,9 @@ jobs:
       - name: Get list of changed Dockerfiles
         id: get_changed
         run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'Dockerfile$' || true > changed_dockerfiles.txt
+          git status
+          git log --oneline
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'Dockerfile$' > changed_dockerfiles.txt
           echo "Changed Dockerfiles:"
           cat changed_dockerfiles.txt
 
