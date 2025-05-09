@@ -1,13 +1,13 @@
 FROM davidfdezalcoba/unrar:latest AS unrar
 FROM python:alpine
 
-# environment settings
-ENV HOME="/config" \
-  PYTHONIOENCODING=utf-8
-
 # renovate: datasource=github-releases depName=sabnzbd packageName=sabnzbd/sabnzbd
 ARG SABNZBD_VERSION=4.5.1
 LABEL org.opencontainers.image.source="https://github.com/sabnzbd/sabnzbd"
+
+# environment settings
+ENV HOME="/config" \
+  PYTHONIOENCODING=utf-8
 
 RUN \
   echo "**** install packages ****" && \
