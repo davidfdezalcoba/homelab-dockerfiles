@@ -14,7 +14,6 @@ RUN \
   apk --no-cache add \
     icu-data-full \
     curl \
-    jq \
     icu-libs
 
 RUN \
