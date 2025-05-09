@@ -37,7 +37,7 @@ RUN \
   pip install -U --no-cache-dir \
     pip \
     wheel && \
-  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.20/ -r requirements.txt && \
+  pip install -U --no-cache-dir -r requirements.txt && \
   echo "**** build sab translations ****" && \
   python3 tools/make_mo.py && \
   echo "**** install par2cmdline-turbo from source ****" && \
