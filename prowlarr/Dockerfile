@@ -2,6 +2,7 @@ FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=prowlarr packageName=Prowlarr/Prowlarr versioning=loose
 ARG PROWLARR_VERSION=1.35.1.5034
+LABEL org.opencontainers.image.source="https://github.com/Prowlarr/Prowlarr"
 
 # environment settings
 ARG PROWLARR_BRANCH="master"

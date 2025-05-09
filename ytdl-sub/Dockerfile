@@ -7,6 +7,8 @@ ENV SSL_CERT_DIR="/etc/ssl/certs/"
 
 # renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub versioning=loose
 ARG YTDL_SUB_VERSION=2025.05.05
+LABEL org.opencontainers.image.source="https://github.com/jmbannon/ytdl-sub"
+
 ###############################################################################
 # YTDL-SUB INSTALL
 

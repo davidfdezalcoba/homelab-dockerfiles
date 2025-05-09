@@ -7,6 +7,7 @@ ENV HOME="/config" \
 
 # renovate: datasource=github-releases depName=sabnzbd packageName=sabnzbd/sabnzbd
 ARG SABNZBD_VERSION=4.5.1
+LABEL org.opencontainers.image.source="https://github.com/sabnzbd/sabnzbd"
 
 RUN \
   echo "**** install packages ****" && \
