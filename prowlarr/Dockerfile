@@ -5,7 +5,6 @@ ARG PROWLARR_VERSION=1.35.1.5034
 LABEL org.opencontainers.image.source="https://github.com/Prowlarr/Prowlarr"
 
 # environment settings
-ARG PROWLARR_BRANCH="master"
 ENV XDG_CONFIG_HOME="/config/xdg" \
   COMPlus_EnableDiagnostics=0 \
   TMPDIR=/run/prowlarr-temp
@@ -16,19 +15,14 @@ RUN \
     icu-libs \
     sqlite-libs \
     curl \
-    jq \
     xmlstarlet
 
 RUN \
   echo "**** install prowlarr ****" && \
   mkdir -p /app/prowlarr/bin && \
-  if [ -z ${PROWLARR_VERSION+x} ]; then \
-    PROWLARR_VERSION=$(curl -sL "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/changes?runtime=netcore&os=linuxmusl" \
-    | jq -r '.[0].version'); \
-  fi && \
   curl -o \
     /tmp/prowlarr.tar.gz -L \
-    "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/updatefile?version=${PROWLARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
+    "https://prowlarr.servarr.com/v1/update/master/updatefile?version=${PROWLARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \
     /tmp/prowlarr.tar.gz -C \
     /app/prowlarr/bin --strip-components=1
