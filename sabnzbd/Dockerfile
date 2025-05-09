@@ -33,7 +33,7 @@ RUN \
     /tmp/sabnzbd.tar.gz -C \
     /app/sabnzbd --strip-components=1 && \
   cd /app/sabnzbd && \
-  python3 -m venv /lsiopy && \
+  python3 -m venv /venv && \
   pip install -U --no-cache-dir \
     pip \
     wheel && \

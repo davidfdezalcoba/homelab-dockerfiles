@@ -1,5 +1,6 @@
 # renovate: datasource=github-releases depName=recyclarr packageName=recyclarr/recyclarr
 ARG RECYCLARR_VERSION=v7.4.1
+LABEL org.opencontainers.image.source="https://github.com/recyclarr/recyclarr"
 
 FROM ghcr.io/recyclarr/recyclarr:${RECYCLARR_VERSION}
 
