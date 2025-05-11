@@ -3,7 +3,7 @@ FROM davidfdezalcoba/unrar:latest AS unrar
 FROM python:3.12-alpine3.21
 
 # renovate: datasource=github-releases depName=bazarr packageName=morpheus65535/bazarr
-ARG BAZARR_VERSION=v1.5.1
+ARG BAZARR_VERSION=v1.5.2
 LABEL org.opencontainers.image.source="https://github.com/morpheus65535/bazarr"
 
 RUN \
