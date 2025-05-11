@@ -1,4 +1,8 @@
-FROM code.forgejo.org/forgejo/runner:6.3.1
+# renovate: datasource=gitea-releases depName=forgejo-runner packageName=forgejo/runner registryUrl=https://code.forgejo.org
+ARG FORGEJO_RUNNER_VERSION=6.3.1
+FROM code.forgejo.org/forgejo/runner:${FORGEJO_RUNNER_VERSION}
+
+LABEL org.opencontainers.image.source="https://code.forgejo.org/forgejo/runner"
 
 USER 0:0
 
