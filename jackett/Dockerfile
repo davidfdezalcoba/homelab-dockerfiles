@@ -37,4 +37,6 @@ RUN \
   chown 1000:1000 -R /app/Jackett && \
   chown 1000:1000 -R /run/jackett-temp
 
+USER 1000:1000
+
 ENTRYPOINT ["/bin/sh", "-c", "/app/Jackett/jackett --NoUpdates"]
