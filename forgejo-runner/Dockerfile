@@ -11,6 +11,6 @@ RUN apk add --no-cache \
       npm \
       docker-cli
 
-RUN node -v && docker version
+RUN node -v
 
 USER 1000
