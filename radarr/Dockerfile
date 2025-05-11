@@ -23,7 +23,7 @@ RUN \
 RUN \
   echo "**** install radarr ****" && \
   mkdir -p /app/radarr/bin && \
-  curl -o \
+  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
     /tmp/radarr.tar.gz -L \
     "https://radarr.servarr.com/v1/update/master/updatefile?version=${RADARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \

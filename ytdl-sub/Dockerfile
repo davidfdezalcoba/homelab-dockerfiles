@@ -1,13 +1,13 @@
 FROM ubuntu:noble
 
+# renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub versioning=loose
+ARG YTDL_SUB_VERSION=2025.05.05
+LABEL org.opencontainers.image.source="https://github.com/jmbannon/ytdl-sub"
+
 # For phantomjs
 ENV OPENSSL_CONF="/etc/ssl"
 # For downloading thumbnails
 ENV SSL_CERT_DIR="/etc/ssl/certs/"
-
-# renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub versioning=loose
-ARG YTDL_SUB_VERSION=2025.05.05
-LABEL org.opencontainers.image.source="https://github.com/jmbannon/ytdl-sub"
 
 ###############################################################################
 # YTDL-SUB INSTALL
@@ -35,7 +35,9 @@ RUN mkdir -p /config && \
       aria2 \
       python3-venv
 
-RUN curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
+RUN \
+  curl -Lv --connect-timeout 5 --retry 5 --retry-delay 1 -o \
+    ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
     tar -xf ffmpeg.tar.gz && \
     chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffmpeg && \
     chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffprobe && \
@@ -46,7 +48,9 @@ RUN curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/do
     ffmpeg -version
 
 # Install phantomjs if using x86_64, ensure it is properly installed
-RUN curl -L -o phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+RUN \
+  curl -Lv --connect-timeout 5 --retry 5 --retry-delay 1 -o \
+    phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
     tar -xvf phantomjs.tar.bz2 && \
     mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
     rm -rf phantomjs-2.1.1-linux-x86_64/ && \
@@ -54,7 +58,9 @@ RUN curl -L -o phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads
     echo "Phantom JS version:" && \
     phantomjs --version
 
-RUN curl -L -o ytdl-sub https://github.com/jmbannon/ytdl-sub/releases/download/${YTDL_SUB_VERSION}/ytdl-sub && \
+RUN \
+  curl -Lv --connect-timeout 5 --retry 5 --retry-delay 1 -o \
+    ytdl-sub https://github.com/jmbannon/ytdl-sub/releases/download/${YTDL_SUB_VERSION}/ytdl-sub && \
     chmod +x ytdl-sub && \
     ./ytdl-sub -h
 

@@ -20,7 +20,7 @@ RUN \
   echo "**** install jackett ****" && \
   mkdir -p \
     /app/Jackett && \
-  curl --retry 5 --retry-delay 10 -o \
+  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
     /tmp/jacket.tar.gz -L \
     "https://github.com/Jackett/Jackett/releases/download/${JACKETT_VERSION}/Jackett.Binaries.LinuxMuslAMDx64.tar.gz" && \
   tar xf \
