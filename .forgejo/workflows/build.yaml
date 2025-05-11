@@ -12,14 +12,6 @@ jobs:
     runs-on: self-hosted
     steps:
 
-      - name: Install Node.js
-        run: |
-          apk add --no-cache nodejs npm
-
-      - name: Install docker-cli
-        run: |
-          apk add --no-cache docker-cli
-
       - name: Log in to registry
         uses: docker/login-action@v3
         with:
