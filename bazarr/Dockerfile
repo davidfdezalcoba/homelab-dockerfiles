@@ -6,6 +6,7 @@ FROM python:3.12-alpine3.21
 ARG BAZARR_VERSION=v1.5.1
 LABEL org.opencontainers.image.source="https://github.com/morpheus65535/bazarr"
 
+
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache --virtual=build-dependencies \
