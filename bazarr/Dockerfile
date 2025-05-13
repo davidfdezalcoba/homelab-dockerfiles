@@ -11,7 +11,7 @@ ENV \
     PIP_NO_CACHE_DIR=1 \
     PIP_ROOT_USER_ACTION=ignore \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
+    PYTHONUNBUFFERED=1
 
 RUN \
   echo "**** install build packages ****" && \
