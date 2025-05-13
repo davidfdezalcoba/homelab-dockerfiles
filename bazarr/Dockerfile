@@ -1,10 +1,17 @@
-FROM davidfdezalcoba/unrar:latest AS unrar
-
-FROM python:3.12-alpine3.21
+FROM python:3.13-alpine3.21
 
 # renovate: datasource=github-releases depName=bazarr packageName=morpheus65535/bazarr
 ARG BAZARR_VERSION=v1.5.2
 LABEL org.opencontainers.image.source="https://github.com/morpheus65535/bazarr"
+
+ENV \
+    CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
+    PIP_BREAK_SYSTEM_PACKAGES=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_ROOT_USER_ACTION=ignore \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
 
 RUN \
   echo "**** install build packages ****" && \
@@ -15,8 +22,7 @@ RUN \
     libpq-dev \
     libxml2-dev \
     libxslt-dev \
-    curl \
-    python3-dev
+    curl
 
 RUN \
   echo "**** install packages ****" && \
@@ -37,10 +43,10 @@ RUN \
   unzip \
     /tmp/bazarr.zip -d \
     /app/bazarr/bin && \
-  rm -Rf /app/bazarr/bin/bin && \
-  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    /app/bazarr/bin/postgres-requirements.txt -L \
-    "https://raw.githubusercontent.com/morpheus65535/bazarr/${BAZARR_VERSION}/postgres-requirements.txt"
+  rm -Rf /app/bazarr/bin/bin
+  # curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
+  #   /app/bazarr/bin/postgres-requirements.txt -L \
+  #   "https://raw.githubusercontent.com/morpheus65535/bazarr/${BAZARR_VERSION}/postgres-requirements.txt"
 
 RUN \
   echo "**** Install requirements ****" && \
@@ -62,6 +68,6 @@ RUN \
     /tmp/*
 
 # add unrar
-COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
+COPY --from=ghcr.io/linuxserver/unrar:latest /usr/bin/unrar-alpine /usr/bin/unrar
 
 ENTRYPOINT ["/bin/sh", "-c", "python3 /app/bazarr/bin/bazarr.py --no-update --config /config"]
