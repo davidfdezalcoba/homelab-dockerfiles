@@ -1,5 +1,9 @@
 FROM python:3.13-alpine3.20
 
+# renovate: datasource=github-releases depName=yt-dlp packageName=yt-dlp/yt-dlp
+ARG YT_DLP_VERSION=2025.05.22
+LABEL org.opencontainers.image.source="https://github.com/yt-dlp/yt-dlp"
+
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
@@ -11,8 +15,9 @@ RUN \
 
 RUN \
   echo "**** install yt-dlp ****" && \
-  pip install --upgrade --no-cache-dir -U --break-system-packages \
-    yt-dlp
+  curl -L  -o /bin/yt-dlp \
+    "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp" && \
+  chmod a+rx /bin/yt-dlp
 
 COPY --chown=1000:1000 entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
