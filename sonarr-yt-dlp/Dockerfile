@@ -1,7 +1,7 @@
 FROM python:3.13-alpine3.20
 
 # renovate: datasource=github-releases depName=yt-dlp packageName=yt-dlp/yt-dlp
-ARG YT_DLP_VERSION=2025.05.22
+ARG SONARR_YT_DLP_VERSION=2025.05.22
 LABEL org.opencontainers.image.source="https://github.com/yt-dlp/yt-dlp"
 
 RUN \
