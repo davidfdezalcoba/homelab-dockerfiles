@@ -1,4 +1,3 @@
-FROM davidfdezalcoba/unrar:latest AS unrar
 FROM python:alpine
 
 # renovate: datasource=github-releases depName=sabnzbd packageName=sabnzbd/sabnzbd
@@ -65,7 +64,7 @@ RUN \
     /tmp/* \
     $HOME/.cache
 
-COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
+COPY --from=ghcr.io/linuxserver/unrar:latest /usr/bin/unrar-alpine /usr/bin/unrar
 
 WORKDIR /app/sabnzbd
 

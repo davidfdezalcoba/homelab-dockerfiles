@@ -67,7 +67,6 @@ RUN \
     $HOME/.cargo \
     /tmp/*
 
-# add unrar
 COPY --from=ghcr.io/linuxserver/unrar:latest /usr/bin/unrar-alpine /usr/bin/unrar
 
 ENTRYPOINT ["/bin/sh", "-c", "python3 /app/bazarr/bin/bazarr.py --no-update --config /config"]
