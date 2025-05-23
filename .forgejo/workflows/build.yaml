@@ -42,8 +42,9 @@ jobs:
           while read -r dockerfile; do
             [ -z "$dockerfile" ] && continue
             dir=$(dirname "$dockerfile")
-            name=$(echo "$dir" | tr '/' '-' | tr '-' '_')
-            version=$(cat "$dockerfile" | grep -i "ARG $name_VERSION" | cut -d= -f2)
+            name=$(echo "$dir" | tr '/' '-')
+            name_version=$(echo "${name}" | tr '-' '_')
+            version=$(cat "$dockerfile" | grep -i "ARG ${name_version}_VERSION" | cut -d= -f2)
 
             docker buildx build \
               --cache-to=type=registry,ref=git.amellado.stream/davidfdezalcoba/cache,mode=max \

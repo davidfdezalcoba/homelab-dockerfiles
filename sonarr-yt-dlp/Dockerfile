@@ -1,4 +1,4 @@
-FROM python:3.13-alpine3.21
+FROM python:3.13-alpine3.20
 
 # renovate: datasource=github-releases depName=yt-dlp packageName=yt-dlp/yt-dlp
 ARG SONARR_YT_DLP_VERSION=2025.05.22
