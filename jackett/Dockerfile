@@ -1,7 +1,7 @@
 FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=jackett packageName=Jackett/Jackett
-ARG JACKETT_VERSION=v0.22.1947
+ARG JACKETT_VERSION=v0.22.1951
 LABEL org.opencontainers.image.source="https://github.com/Jackett/Jackett"
 
 # environment settings
