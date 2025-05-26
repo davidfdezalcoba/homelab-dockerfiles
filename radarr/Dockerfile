@@ -1,7 +1,7 @@
 FROM alpine:3.21
 
 # renovate: datasource=github-releases depName=radarr packageName=Radarr/Radarr versioning=loose
-ARG RADARR_VERSION=5.24.1.10017
+ARG RADARR_VERSION=5.25.0.10024
 LABEL org.opencontainers.image.source="https://github.com/Radarr/Radarr"
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
