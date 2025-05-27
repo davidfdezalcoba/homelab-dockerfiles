@@ -1,6 +1,6 @@
 FROM alpine:3.21
 
-# renovate: datasource=github-releases depName=radarr packageName=Radarr/Radarr versioning=loose
+# renovate: datasource=custom.servarr depName=radarr packageName=radarr versioning=loose
 ARG RADARR_VERSION=5.23.3.9987
 LABEL org.opencontainers.image.source="https://github.com/Radarr/Radarr"
 
