@@ -1,14 +1,11 @@
-# syntax=docker/dockerfile:1
-
 FROM alpine:3.21
 
-# renovate: datasource=github-releases depName=sonarr packageName=Sonarr/Sonarr versioning=loose
-ARG SONARR_VERSION=4.0.14.2939
+# renovate: datasource=custom.sonarr depName=sonarr packageName=sonarr versioning=loose
+ARG SONARR_VERSION=4.0.1.0
 LABEL org.opencontainers.image.source="https://github.com/Sonarr/Sonarr"
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
   SONARR_CHANNEL="v4-stable" \
-  SONARR_BRANCH="main" \
   COMPlus_EnableDiagnostics=0 \
   TMPDIR=/run/sonarr-temp
 
@@ -30,7 +27,7 @@ RUN \
   chown 1000:1000 ${TMPDIR} && \
   curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
     /tmp/sonarr.tar.gz -L \
-    "https://services.sonarr.tv/v1/update/${SONARR_BRANCH}/download?version=${SONARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
+    "https://services.sonarr.tv/v1/update/main/download?version=${SONARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \
     /tmp/sonarr.tar.gz -C \
     /app/sonarr/bin --strip-components=1
