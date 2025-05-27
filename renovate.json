@@ -26,5 +26,19 @@
         "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?( registryUrl=(?<registryUrl>.*?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
       ]
     }
-  ]
+  ],
+  "customDatasources": {
+    "servarr": {
+      "defaultRegistryUrlTemplate": "https://{{packageName}}.servarr.com/v1/update/master/changes?os=linuxmusl&runtime=netcore&arch=x64",
+      "transformTemplates": [
+        "{ \"releases\": $map($, function($v) { { \"version\": $v.version } })}"
+      ]
+    },
+    "sonarr": {
+      "defaultRegistryUrlTemplate": "https://services.sonarr.tv/v1/releases",
+      "transformTemplates": [
+        "{ \"releases\": [ { \"version\": $.\"v4-stable\".\"version\" } ] }"
+      ]
+    }
+  }
 }
