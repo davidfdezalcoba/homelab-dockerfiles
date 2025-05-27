@@ -1,7 +1,7 @@
 FROM alpine:3.21
 
 # renovate: datasource=custom.servarr depName=prowlarr packageName=prowlarr versioning=loose
-ARG PROWLARR_VERSION=1.36.2.5071
+ARG PROWLARR_VERSION=1.36.3.5071
 LABEL org.opencontainers.image.source="https://github.com/Prowlarr/Prowlarr"
 
 # environment settings
