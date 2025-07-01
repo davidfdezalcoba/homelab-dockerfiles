@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=wg-easy packageName=wg-easy/wg-easy
-ARG WG_EASY_VERSION=15.0.0
+ARG WG_EASY_VERSION=15.1.0
 
 FROM ghcr.io/wg-easy/wg-easy:${WG_EASY_VERSION}
 
