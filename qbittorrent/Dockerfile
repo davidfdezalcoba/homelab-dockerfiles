@@ -45,6 +45,6 @@ RUN \
     /root/.cache \
     /tmp/*
 
-COPY --from=ghcr.io/linuxserver/unrar:7.1.6 /usr/bin/unrar-alpine /usr/bin/unrar
+COPY --from=ghcr.io/linuxserver/unrar:7.1.8 /usr/bin/unrar-alpine /usr/bin/unrar
 
 ENTRYPOINT ["/bin/sh", "-c", "/usr/bin/qbittorrent-nox --webui-port=${WEBUI_PORT} ${TORRENTING_PORT_ARG}"]
