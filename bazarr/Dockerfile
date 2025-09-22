@@ -37,16 +37,12 @@ RUN \
   echo "**** install bazarr ****" && \
   mkdir -p \
     /app/bazarr/bin && \
-  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    /tmp/bazarr.zip -L \
+  curl -L -o /tmp/bazarr.zip \
     "https://github.com/morpheus65535/bazarr/releases/download/${BAZARR_VERSION}/bazarr.zip" && \
   unzip \
     /tmp/bazarr.zip -d \
     /app/bazarr/bin && \
   rm -Rf /app/bazarr/bin/bin
-  # curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-  #   /app/bazarr/bin/postgres-requirements.txt -L \
-  #   "https://raw.githubusercontent.com/morpheus65535/bazarr/${BAZARR_VERSION}/postgres-requirements.txt"
 
 RUN \
   echo "**** Install requirements ****" && \

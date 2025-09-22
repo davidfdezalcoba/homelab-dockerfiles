@@ -36,8 +36,7 @@ RUN mkdir -p /config && \
       python3-venv
 
 RUN \
-  curl -Lv --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
+  curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
     tar -xf ffmpeg.tar.gz && \
     chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffmpeg && \
     chmod +x ffmpeg-master-latest-linux64-gpl/bin/ffprobe && \
@@ -49,8 +48,7 @@ RUN \
 
 # Install phantomjs if using x86_64, ensure it is properly installed
 RUN \
-  curl -Lv --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+  curl -L -o phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
     tar -xvf phantomjs.tar.bz2 && \
     mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/bin/phantomjs && \
     rm -rf phantomjs-2.1.1-linux-x86_64/ && \
@@ -59,8 +57,7 @@ RUN \
     phantomjs --version
 
 RUN \
-  curl -Lv --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    ytdl-sub https://github.com/jmbannon/ytdl-sub/releases/download/${YTDL_SUB_VERSION}/ytdl-sub && \
+  curl -L -o ytdl-sub https://github.com/jmbannon/ytdl-sub/releases/download/${YTDL_SUB_VERSION}/ytdl-sub && \
     chmod +x ytdl-sub && \
     ./ytdl-sub -h
 

@@ -20,8 +20,7 @@ RUN \
 RUN \
   echo "**** install prowlarr ****" && \
   mkdir -p /app/prowlarr/bin && \
-  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    /tmp/prowlarr.tar.gz -L \
+  curl -L -o /tmp/prowlarr.tar.gz \
     "https://prowlarr.servarr.com/v1/update/master/updatefile?version=${PROWLARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \
     /tmp/prowlarr.tar.gz -C \

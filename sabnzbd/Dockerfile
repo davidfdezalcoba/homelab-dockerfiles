@@ -25,8 +25,7 @@ RUN \
 RUN \
   echo "**** install sabnzbd ****" && \
   mkdir -p /app/sabnzbd && \
-  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    /tmp/sabnzbd.tar.gz -L \
+  curl -L -o /tmp/sabnzbd.tar.gz \
     "https://github.com/sabnzbd/sabnzbd/releases/download/${SABNZBD_VERSION}/SABnzbd-${SABNZBD_VERSION}-src.tar.gz" && \
   tar xf \
     /tmp/sabnzbd.tar.gz -C \
@@ -40,11 +39,10 @@ RUN \
   echo "**** build sab translations ****" && \
   python3 tools/make_mo.py && \
   echo "**** install par2cmdline-turbo from source ****" && \
-  PAR2_VERSION=$(curl --connect-timeout 5 --retry 5 --retry-delay 1 -s https://api.github.com/repos/animetosho/par2cmdline-turbo/releases/latest \
+  PAR2_VERSION=$(curl -s https://api.github.com/repos/animetosho/par2cmdline-turbo/releases/latest \
     | awk '/tag_name/{print $4;exit}' FS='[""]'); \
   mkdir /tmp/par2cmdline && \
-  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    /tmp/par2cmdline.tar.gz -L \
+  curl -L -o /tmp/par2cmdline.tar.gz \
     "https://github.com/animetosho/par2cmdline-turbo/archive/${PAR2_VERSION}.tar.gz" && \
   tar xf \
     /tmp/par2cmdline.tar.gz -C \

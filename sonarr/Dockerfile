@@ -25,8 +25,7 @@ RUN \
   echo "**** install sonarr ****" && \
   mkdir -p /app/sonarr/bin ${TMPDIR} && \
   chown 1000:1000 ${TMPDIR} && \
-  curl -v --connect-timeout 5 --retry 5 --retry-delay 1 -o \
-    /tmp/sonarr.tar.gz -L \
+  curl -L -o /tmp/sonarr.tar.gz \
     "https://services.sonarr.tv/v1/update/main/download?version=${SONARR_VERSION}&os=linuxmusl&runtime=netcore&arch=x64" && \
   tar xzf \
     /tmp/sonarr.tar.gz -C \
