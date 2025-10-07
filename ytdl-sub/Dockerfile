@@ -13,15 +13,12 @@ ENV SSL_CERT_DIR="/etc/ssl/certs/"
 # YTDL-SUB INSTALL
 
 SHELL ["/bin/bash", "-c"]
-RUN mkdir -p /config && \
-    chown 1000:1000 /config && \
+RUN mkdir -p /config /app && \
+    chown 1000:1000 /config /app && \
     apt-get -y update && \
     apt-get -y upgrade && \
     apt-get install --no-install-recommends -y \
-      software-properties-common && \
-    apt-get -y update && \
-    apt-get -y upgrade && \
-    apt-get install --no-install-recommends -y \
+      software-properties-common \
       curl \
       vim \
       g++ \
@@ -33,7 +30,10 @@ RUN mkdir -p /config && \
       xz-utils \
       bzip2 \
       aria2 \
+      deno \
       python3-venv
+
+WORKDIR /app
 
 RUN \
   curl -L -o ffmpeg.tar.gz https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz && \
@@ -71,3 +71,6 @@ RUN apt-get remove -y \
     apt-get autoremove -y && \
     apt-get purge -y --auto-remove && \
     rm -rf /var/lib/apt/lists/*
+
+
+ENTRYPOINT ["/bin/bash", "-c", "/ytdl-sub --config /config/config.yaml sub /config/subs.yaml"]
