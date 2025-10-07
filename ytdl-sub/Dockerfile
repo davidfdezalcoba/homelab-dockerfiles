@@ -30,7 +30,6 @@ RUN mkdir -p /config /app && \
       xz-utils \
       bzip2 \
       aria2 \
-      deno \
       python3-venv
 
 WORKDIR /app
