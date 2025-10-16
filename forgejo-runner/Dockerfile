@@ -8,6 +8,8 @@ USER 0:0
 
 RUN apk add --no-cache \
       nodejs \
+      jq \
+      curl \
       npm \
       docker-cli
 
