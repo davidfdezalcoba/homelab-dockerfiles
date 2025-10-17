@@ -18,7 +18,10 @@ RUN apk add --no-cache \
       docker-cli
 
 RUN \
-  curl -sL https://dl.gitea.com/tea/${TEA_VERSION}/tea-${TEA_VERSION}-linux-amd64 -o /usr/local/bin/tea && \
+  echo "**** install tea ****" && \
+  echo "https://dl.gitea.com/tea/${TEA_VERSION}/tea-${TEA_VERSION}-linux-amd64" && \
+  curl -sL -o /usr/local/bin/tea \
+    "https://dl.gitea.com/tea/${TEA_VERSION}/tea-${TEA_VERSION}-linux-amd64" && \
   chmod +x /usr/local/bin/tea
 
 RUN node -v
