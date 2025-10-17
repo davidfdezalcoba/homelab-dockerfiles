@@ -3,6 +3,7 @@ ARG FORGEJO_RUNNER_VERSION=11.1.2
 
 # renovate: datasource=gitea-releases depName=tea packageName=gitea/tea registryUrl=https://gitea.com
 ARG TEA_VERSION=0.10.1
+ENV TEA_VERSION=${TEA_VERSION}
 
 FROM code.forgejo.org/forgejo/runner:${FORGEJO_RUNNER_VERSION}
 
