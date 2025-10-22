@@ -72,4 +72,4 @@ RUN apt-get remove -y \
     rm -rf /var/lib/apt/lists/*
 
 
-ENTRYPOINT ["/bin/bash", "-c", "/ytdl-sub --config /config/config.yaml sub /config/subs.yaml"]
+ENTRYPOINT ["/bin/bash", "-c", "/app/ytdl-sub --config /config/config.yaml sub /config/subs.yaml"]
