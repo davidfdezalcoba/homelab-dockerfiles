@@ -1,7 +1,7 @@
 FROM python:alpine
 
 # renovate: datasource=github-releases depName=sabnzbd packageName=sabnzbd/sabnzbd
-ARG SABNZBD_VERSION=4.5.3
+ARG SABNZBD_VERSION=4.5.4
 LABEL org.opencontainers.image.source="https://github.com/sabnzbd/sabnzbd"
 
 # environment settings
