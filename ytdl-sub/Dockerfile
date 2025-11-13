@@ -1,7 +1,7 @@
 FROM ubuntu:noble
 
 # renovate: datasource=github-releases depName=ytdl-sub packageName=jmbannon/ytdl-sub versioning=loose
-ARG YTDL_SUB_VERSION=2025.11.09
+ARG YTDL_SUB_VERSION=2025.11.13
 LABEL org.opencontainers.image.source="https://github.com/jmbannon/ytdl-sub"
 
 # For phantomjs
