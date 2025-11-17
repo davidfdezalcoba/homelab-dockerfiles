@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=jellyfin packageName=jellyfin/jellyfin
-ARG JELLYFIN_VERSION=10.11.2
+ARG JELLYFIN_VERSION=10.11.3
 
 FROM ghcr.io/jellyfin/jellyfin:${JELLYFIN_VERSION}
 
