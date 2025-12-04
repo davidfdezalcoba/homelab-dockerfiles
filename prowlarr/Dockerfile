@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 
 # renovate: datasource=custom.servarr depName=prowlarr packageName=prowlarr versioning=loose
 ARG PROWLARR_VERSION=2.3.0.5236

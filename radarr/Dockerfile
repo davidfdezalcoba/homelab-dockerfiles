@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 
 # renovate: datasource=custom.servarr depName=radarr packageName=radarr versioning=loose
 ARG RADARR_VERSION=6.0.4.10291

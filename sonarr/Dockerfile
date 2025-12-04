@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 
 # renovate: datasource=custom.sonarr depName=sonarr packageName=sonarr versioning=loose
 ARG SONARR_VERSION=4.0.16.2944
