@@ -1,5 +1,5 @@
 # renovate: datasource=gitea-releases depName=forgejo-runner packageName=forgejo/runner registryUrl=https://code.forgejo.org
-ARG FORGEJO_RUNNER_VERSION=12.3.1
+ARG FORGEJO_RUNNER_VERSION=12.4.0
 FROM code.forgejo.org/forgejo/runner:${FORGEJO_RUNNER_VERSION}
 
 # renovate: datasource=gitea-releases depName=tea packageName=gitea/tea registryUrl=https://gitea.com
