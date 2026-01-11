@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:3.14-alpine3.23
 
 # renovate: datasource=github-releases depName=sabnzbd packageName=sabnzbd/sabnzbd
 ARG SABNZBD_VERSION=4.5.5
