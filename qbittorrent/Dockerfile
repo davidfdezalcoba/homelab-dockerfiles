@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-# renovate: datasource=repology depName=alpine_edge/qbittorrent-nox versioning=loose
+# renovate: datasource=repology depName=alpine_edge/qbittorrent-nox packageName=alpine_edge/qbittorrent-nox versioning=loose
 ARG QBITTORRENT_VERSION=5.1.0-r0
 # renovate: datasource=github-releases depName=qbittorrent-cli packageName=fedarovich/qbittorrent-cli versioning=loose
 ARG QBT_CLI_VERSION=v1.8.24285.1
