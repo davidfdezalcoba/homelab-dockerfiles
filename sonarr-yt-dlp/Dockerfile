@@ -16,7 +16,7 @@ RUN \
 RUN \
   echo "**** install yt-dlp ****" && \
   curl -L  -o /bin/yt-dlp \
-    "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp" && \
+    "https://github.com/yt-dlp/yt-dlp/releases/download/${SONARR_YT_DLP_VERSION}/yt-dlp" && \
   chmod a+rx /bin/yt-dlp
 
 COPY --chown=1000:1000 entrypoint.sh /entrypoint.sh
