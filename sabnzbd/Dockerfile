@@ -62,7 +62,7 @@ RUN \
     /tmp/* \
     $HOME/.cache
 
-COPY --from=ghcr.io/linuxserver/unrar:latest /usr/bin/unrar-alpine /usr/bin/unrar
+COPY --from=ghcr.io/linuxserver/unrar:7.1.10 /usr/bin/unrar-alpine /usr/bin/unrar
 
 WORKDIR /app/sabnzbd
 
