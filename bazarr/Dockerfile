@@ -1,7 +1,7 @@
 FROM python:3.13-alpine3.21
 
 # renovate: datasource=github-releases depName=bazarr packageName=morpheus65535/bazarr
-ARG BAZARR_VERSION=v1.5.4
+ARG BAZARR_VERSION=v1.5.5
 LABEL org.opencontainers.image.source="https://github.com/morpheus65535/bazarr"
 
 ENV \
