@@ -3,7 +3,7 @@ ARG FORGEJO_RUNNER_VERSION=12.7.0
 FROM code.forgejo.org/forgejo/runner:${FORGEJO_RUNNER_VERSION}
 
 # renovate: datasource=gitea-releases depName=tea packageName=gitea/tea registryUrl=https://gitea.com
-ARG TEA_VERSION=0.11.1
+ARG TEA_VERSION=0.12.0
 
 LABEL org.opencontainers.image.source="https://code.forgejo.org/forgejo/runner"
 
