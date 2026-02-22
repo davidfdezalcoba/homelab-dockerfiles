@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=recyclarr packageName=recyclarr/recyclarr
-ARG RECYCLARR_VERSION=7.5.2
+ARG RECYCLARR_VERSION=8.2.0
 
 FROM ghcr.io/recyclarr/recyclarr:${RECYCLARR_VERSION}
 
