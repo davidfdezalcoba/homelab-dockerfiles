@@ -1,0 +1,57 @@
+name: "[On demand] Build and Push Docker Image"
+
+on:
+  workflow_dispatch:
+    inputs:
+      application:
+        description: 'Application to build'
+        type: string
+        required: true
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+    steps:
+
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          registry: git.amellado.stream
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Checkout repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Build and push
+        run: |
+          REPO_URL="${{ github.server_url }}/${{ github.repository }}.git"
+          BRANCH="main"
+
+          if [ ! -z ${application} ]; then
+            exit 1
+          fi
+
+          application="${{ github.event.inputs.application }}" 
+
+          if [ ! -d "${application}" ]; then
+            exit 1
+          fi
+
+          name=$(echo "${application}" | tr '/' '-')
+          name_version=$(echo "${name}" | tr '-' '_')
+          version=$(cat "$dockerfile" | grep -i "ARG ${name_version}_VERSION" | cut -d= -f2)
+
+          docker buildx build \
+            --cache-to=type=registry,ref=git.amellado.stream/amellado/${name}-cache,mode=max \
+            --cache-from=type=registry,ref=git.amellado.stream/amellado/${name}-cache \
+            --progress plain \
+            --file "$dockerfile" \
+            --tag "git.amellado.stream/amellado/${name}:${version}" \
+            --push \
+            ./${name}
