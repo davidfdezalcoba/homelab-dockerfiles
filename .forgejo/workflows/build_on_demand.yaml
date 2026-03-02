@@ -32,11 +32,6 @@ jobs:
         run: |
           REPO_URL="${{ github.server_url }}/${{ github.repository }}.git"
           BRANCH="main"
-
-          if [ ! -z ${application} ]; then
-            exit 1
-          fi
-
           application="${{ inputs.application }}" 
 
           if [ ! -d "${application}" ]; then
