@@ -40,7 +40,7 @@ jobs:
 
           name=$(echo "${application}" | tr '/' '-')
           name_version=$(echo "${name}" | tr '-' '_')
-          version=$(cat "$dockerfile" | grep -i "ARG ${name_version}_VERSION" | cut -d= -f2)
+          version=$(cat "${application}/Dockerfile" | grep -i "ARG ${name_version}_VERSION" | cut -d= -f2)
 
           docker buildx build \
             --cache-to=type=registry,ref=git.amellado.stream/amellado/${name}-cache,mode=max \
