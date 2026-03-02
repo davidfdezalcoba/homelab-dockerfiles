@@ -37,7 +37,7 @@ jobs:
             exit 1
           fi
 
-          application="${{ github.event.inputs.application }}" 
+          application="${{ inputs.application }}" 
 
           if [ ! -d "${application}" ]; then
             exit 1
