@@ -13,7 +13,7 @@ jobs:
     steps:
 
       - name: Log in to registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: git.amellado.stream
           username: ${{ secrets.DOCKER_USERNAME }}
