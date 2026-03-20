@@ -1,7 +1,7 @@
 FROM alpine:3.23
 
 # renovate: datasource=custom.sonarr depName=sonarr packageName=sonarr versioning=loose
-ARG SONARR_VERSION=4.0.16.2944
+ARG SONARR_VERSION=4.0.17.2952
 LABEL org.opencontainers.image.source="https://github.com/Sonarr/Sonarr"
 
 ENV XDG_CONFIG_HOME="/config/xdg" \
