@@ -4,7 +4,7 @@ FROM python:3.14-alpine3.23
 ARG SABNZBD_VERSION=4.5.5
 LABEL org.opencontainers.image.source="https://github.com/sabnzbd/sabnzbd"
 
-# environment settings
+# environment settings
 ENV HOME="/config" \
   PYTHONIOENCODING=utf-8
 

@@ -4,7 +4,7 @@ FROM alpine:3.23
 ARG JACKETT_VERSION=v0.24.1542
 LABEL org.opencontainers.image.source="https://github.com/Jackett/Jackett"
 
-# environment settings
+# environment settings
 ENV XDG_DATA_HOME="/config" \
   XDG_CONFIG_HOME="/config" \
   TMPDIR=/run/jackett-temp
